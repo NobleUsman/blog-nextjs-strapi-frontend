@@ -1,4 +1,5 @@
 import { fetchBlogs, fetchHeaderFooter } from '@/lib/strapi';
+import Link from 'next/link';
 
 export default async function Home() {
   const { header, footer } = await fetchHeaderFooter();
@@ -14,14 +15,14 @@ export default async function Home() {
         <h2 className="text-3xl font-semibold text-gray-800 mb-8">Latest Blogs</h2>
         <div className="grid gap-6">
           {blogs.map((blog) => (
-            <a
+            <Link
               key={blog.id}
               href={`/blog/${blog.slug}`}
               className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200"
             >
               <h3 className="text-xl font-bold text-gray-800 mb-2">{blog.title}</h3>
               <p className="text-gray-600">By {blog.author}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </main>
